@@ -1,37 +1,62 @@
+import java.util.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
-import java.util.Scanner;
 
 public class Formatador {
 
-   public static Scanner sc = new Scanner(System.in);
-   public static DecimalFormatSymbols formatacao = new DecimalFormatSymbols(Locale.US);
+    private int defineQuantidadeDecimaisParaFormatar() {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.print("Defina uma quantidade de números decimais para formatar: ");
+            return scanner.nextInt();
+        } catch (Exception ex) {
+            System.out.println("Erro ao ler a quantidade.");
+        }
+        return 0;
+    }
 
+    private List<Double> receberValoresDecimais(int quantidade) {
+        Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+        List<Double> listaValoresDecimais = new ArrayList<>();
+        try {
+            for (int i = 1; i <= quantidade; i++) {
+                System.out.print(i + "o número: ");
+                listaValoresDecimais.add(scanner.nextDouble());
+            }
+        } catch (Exception ex) {
+            System.out.println("Erro ao receber os valores.");
+        }
+        return listaValoresDecimais;
+    }
 
-        System.out.print("Insira a quantidade de valores: ");
-        int quantidade = sc.nextInt();
+    public List<String> formatar() {
+        Scanner scanner = new Scanner(System.in);
+
+        int retornoQuantidade = defineQuantidadeDecimaisParaFormatar();
+        List<Double> lstRetornoValoresDecimais = receberValoresDecimais(retornoQuantidade);
+
+        List<String> listaValoresFormatados = new ArrayList<>();
+        DecimalFormatSymbols simbolos = new DecimalFormatSymbols(Locale.US);
 
         System.out.print("Insira o simbolo para o separador: ");
-        char simbolo = sc.next().charAt(0);
-        formatacao.setDecimalSeparator(simbolo);
+        char simbolo = scanner.next().charAt(0);
 
-        DecimalFormat formato = new DecimalFormat("#.##", formatacao);
+        simbolos.setDecimalSeparator(simbolo);
 
+        DecimalFormat formato = new DecimalFormat("#.##", simbolos);
 
-        double[] valores = new double[quantidade];
-
-        for(int i = 0; i < quantidade; i++) {
-            System.out.print("Insira o " + (i + 1) + "° valor: ");
-            valores[i] = sc.nextDouble();
+        try {
+            for (double valor : lstRetornoValoresDecimais) {
+                String valorFormatado = formato.format(valor);
+                listaValoresFormatados.add(valorFormatado);
+            }
+            System.out.println(listaValoresFormatados);
+        } catch (Exception ex){
+            System.out.println("Erro ao formatar valores.");
         }
-
-        for(int i = 0; i < quantidade; i++) {
-            String valorFormatado = formato.format(valores[i]);
-            System.out.println(valorFormatado);
-        }
+        return listaValoresFormatados;
     }
 
 }
