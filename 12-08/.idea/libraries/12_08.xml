@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="12-08">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/swing-borderlayout-demo.zip!/" />
+      <root url="jar://$PROJECT_DIR$/swing-forms-summary.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
