@@ -1,0 +1,13 @@
+disparo de email
+erro nos timestamps
+camada model com os padrões adequados
+4 métodos de relevancia com as regras de negócio(podendo ser CRUD)
+classe de teste
+classe de conexão
+DAO com CRUD funcional
+
+se basear nos projetos passados da DASA
+
+todos devem postar o link ou mandar o zip
+
+não fazer coisas complexas(service, controller, dao, etc) nada mais e nada menos
